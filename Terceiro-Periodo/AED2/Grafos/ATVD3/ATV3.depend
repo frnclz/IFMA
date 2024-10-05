@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1725292946 source:g:\meu drive\documentos\documents\3ºp\aed2\grafos\atv3\atv3.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<stdbool.h>
+	"ATV3.h"
+
+1724897555 g:\meu drive\documentos\documents\3ºp\aed2\grafos\atv3\atv3.h
+
+1725293464 source:g:\meu drive\documentos\documents\3ºp\aed2\grafos\atv3\main.c
+	"ATV3.h"
+	<locale.h>
+

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatório1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f6a257f-811f-44b3-b949-1a527d0adf01">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="LAB6_DataAdapter.jrdax"/>
+	<style name="condições">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{VALOR_ALUGUEL} > 2000]]></conditionExpression>
+			<style mode="Opaque" forecolor="#ED1B18"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[1000 <= $F{VALOR_ALUGUEL} &&  $F{VALOR_ALUGUEL} <= 2000]]></conditionExpression>
+			<style mode="Opaque" forecolor="#2089E6"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{VALOR_ALUGUEL} < 1000]]></conditionExpression>
+			<style mode="Opaque" forecolor="#27A30B"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="ID_INQUILINO" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+    L.ID AS ID_LOCACAO,
+    L.DATA_INICIO,
+    L.DATA_FIM,
+    L.VALOR_ALUGUEL,
+    L.PERCENTUAL_MULTA,
+    L.OBS,
+    (SELECT AVG(L2.VALOR_ALUGUEL) 
+     FROM LOCACAO L2 
+     WHERE L2.ID_INQUILINO = L.ID_INQUILINO) AS MEDIA_ALUGUEL
+     
+FROM LOCACAO L
+JOIN CLIENTES C ON L.ID_INQUILINO = C.ID
+WHERE C.ID = $P{ID_INQUILINO}
+ORDER BY L.DATA_INICIO ASC]]>
+	</queryString>
+	<field name="ID_LOCACAO" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="ID_LOCACAO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="locacao"/>
+	</field>
+	<field name="DATA_INICIO" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="DATA_INICIO"/>
+		<property name="com.jaspersoft.studio.field.label" value="DATA_INICIO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="locacao"/>
+	</field>
+	<field name="DATA_FIM" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="DATA_FIM"/>
+		<property name="com.jaspersoft.studio.field.label" value="DATA_FIM"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="locacao"/>
+	</field>
+	<field name="VALOR_ALUGUEL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="VALOR_ALUGUEL"/>
+		<property name="com.jaspersoft.studio.field.label" value="VALOR_ALUGUEL"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="locacao"/>
+	</field>
+	<field name="PERCENTUAL_MULTA" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="PERCENTUAL_MULTA"/>
+		<property name="com.jaspersoft.studio.field.label" value="PERCENTUAL_MULTA"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="locacao"/>
+	</field>
+	<field name="OBS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="OBS"/>
+		<property name="com.jaspersoft.studio.field.label" value="OBS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="locacao"/>
+	</field>
+	<field name="MEDIA_ALUGUEL" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="MEDIA_ALUGUEL"/>
+		<property name="com.jaspersoft.studio.field.label" value="MEDIA_ALUGUEL"/>
+	</field>
+	<background>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+		</band>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="10" width="557" height="50" backcolor="#A6C3E4" uuid="9dbd7a0f-79f1-4981-a971-923b68c2ed36"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Locações Associadas]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="10" width="560" height="1" uuid="a6a54b32-5bb5-458d-8e9e-a39b1b6a6a6d"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="560" height="40" uuid="6617c034-6c3f-4662-8345-cf00aad4caa9">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="3" y="5" width="77" height="30" uuid="ce2a984a-4a8f-4261-8c76-c1c9d1d170f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID DA LOCAÇÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="5" width="77" height="30" uuid="bd7aecf2-7386-4fad-92f5-8db8f2584db6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DE FIM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="5" width="77" height="30" uuid="9109f43b-c0ab-4702-82f5-dd80e7d15b5c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PERCENTUAL DA MULTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="481" y="5" width="53" height="30" uuid="b96a945f-f251-4470-ad26-3d877cf333d3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OBS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="5" width="77" height="30" uuid="f34c8dc4-1aad-4929-b8ca-3da4f020d93e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA  DE INÍCIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="5" width="77" height="30" uuid="c90cd984-fd7e-4077-b22e-9fbafd943a47"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR DO ALUGUEL]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="64" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="560" height="40" uuid="1a3d49b7-9c7e-4240-bbbe-e182ef89d063"/>
+			</rectangle>
+			<textField>
+				<reportElement x="10" y="0" width="50" height="30" uuid="12f75dbc-5d55-4d43-ac69-ad78b143fc8f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ID_LOCACAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="0" width="100" height="30" uuid="b26e03f4-f65e-4894-b0ab-9b1f53989814"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA_INICIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="90" height="30" uuid="65975379-d074-465f-b13b-66cde96e681c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DATA_FIM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="0" width="40" height="30" uuid="cac2f002-e352-4b7d-a3c9-e84425fbbf2b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PERCENTUAL_MULTA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="497" y="0" width="63" height="30" uuid="1d21be03-6cca-4f8f-a1b0-26c0335c0f6b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{OBS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" style="condições" x="287" y="5" width="60" height="30" uuid="dc256794-97cf-430a-91d7-045e0897537d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[String.format("%,.2f", $F{VALOR_ALUGUEL})
+]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="360" y="7" width="110" height="30" uuid="30f31e61-c420-4e7f-b9b1-c3b39e3f02d4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MÉDIA DO ALUGUEL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="481" y="7" width="70" height="30" uuid="e7580ed8-de2f-4d0c-be2f-5fb2fde878a2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[String.format("%,.2f", $F{MEDIA_ALUGUEL})
+]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

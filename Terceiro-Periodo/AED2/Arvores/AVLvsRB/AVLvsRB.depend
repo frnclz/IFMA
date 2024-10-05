@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1712798032 source:c:\users\franc\onedrive\documents\3ºp\aed2\Árvores\avlvsrb\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"AVLvsRB.h"
+
+1712798967 source:c:\users\franc\onedrive\documents\3ºp\aed2\Árvores\avlvsrb\arvavl.c
+	<stdio.h>
+	<stdlib.h>
+	"AVLvsRB.h"
+
+1712759790 c:\users\franc\onedrive\documents\3ºp\aed2\Árvores\avlvsrb\avlvsrb.h
+
+1712881296 source:c:\users\franc\onedrive\documents\3ºp\aed2\Árvores\avlvsrb\arvrb.c
+	<stdio.h>
+	<stdlib.h>
+	"AVLvsRB.h"
+
+1712881055 source:c:\users\franc\onedrive\documents\3ºp\aed2\Árvores\avlvsrb\main2.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"AVLvsRB.h"
+	<locale.h>
+
+1720633884 source:g:\meu drive\documentos\documents\3ºp\aed2\Árvores\avlvsrb\arvavl.c
+	<stdio.h>
+	<stdlib.h>
+	"AVLvsRB.h"
+
+1712882900 g:\meu drive\documentos\documents\3ºp\aed2\Árvores\avlvsrb\avlvsrb.h
+
+1712882026 source:g:\meu drive\documentos\documents\3ºp\aed2\Árvores\avlvsrb\main2.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"AVLvsRB.h"
+	<locale.h>
+
+1720633733 source:g:\meu drive\documentos\documents\3ºp\aed2\Árvores\avlvsrb\arvrb.c
+	<stdio.h>
+	<stdlib.h>
+	"AVLvsRB.h"
+

@@ -1,0 +1,85 @@
+.grid-grande-1 {
+    width: 8.33%;
+}
+
+.grid-grande-2 {
+    width: 16.66%;
+}
+
+.grid-grande-3 {
+    width: 25%;
+}
+
+.grid-grande-4 {
+    width: 33.33%;
+}
+
+.grid-grande-5 {
+    width: 41.66%;
+}
+
+.grid-grande-6 {
+    width: 50%;
+}
+
+.grid-grande-7 {
+    width: 58.33%;
+}
+
+.grid-grande-8 {
+    width: 66.66%;
+}
+
+.grid-grande-9 {
+    width: 75%;
+}
+
+.grid-grande-10 {
+    width: 83.33%;
+}
+
+.grid-grande-11 {
+    width: 91.66%;
+}
+
+.grid-grande-12 {
+    width: 100%;
+}
+
+header {
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 30px;
+}
+
+nav ul {
+    gap: 20px;
+}
+
+nav ul li a {
+    font-size: 16px;
+}
+
+section>img {
+    max-width: 20%;
+}
+
+main {
+    padding: 40px 10%;
+    margin: 40px auto;
+}
+
+footer {
+    padding: 25px;
+}
+
+footer nav ul {
+    flex-direction: row;
+    gap: 20px;
+}
+
+footer .social-media a img {
+    width: 30px;
+}

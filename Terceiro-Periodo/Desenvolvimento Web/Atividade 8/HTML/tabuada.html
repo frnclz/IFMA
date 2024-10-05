@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabuada</title>
+    <link rel="stylesheet" href="../CSS/tabuada.css">
+    <link rel="stylesheet" href="../CSS/jogo.css">
+</head>
+<body>
+    <header>
+        <h1>Tabuada Divertida!</h1>
+        <a href="../HTML/index.html">Início</a>
+    </header>
+    <div class="game">
+        <form id="jogador" onsubmit="comecaTabuada(event)">
+            <label for="inomejogador">Digite seu nome:</label>
+            <input type="text" id="inomejogador" placeholder="Seu nome" required>
+            <button type="submit">Iniciar Jogo</button>
+        </form>
+    
+        <form id="jogo"style="display:none;" onsubmit="enviarResposta(event)">
+            <h2>Fase <span id="fase">1</span></h2>
+            <p><span id="operacao"></span> = ?</p>
+            <input type="number" id="resposta" placeholder="Sua resposta" required>
+            <button type="submit">Enviar Resposta</button>
+        </form>
+    
+        <div id="fim" style="display:none;">
+            <h2>Fim do Jogo!</h2>
+            <p id="situacao"></p>
+            <p id="pontuacao"></p>
+            <button id="jogarnovamente" style="display: none;">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        let faseatual = 1
+        let pontuacao = 0
+        let jogadorNome = ''
+        const faseMax = 5
+        let respCorreta;
+        
+        function comecaTabuada(event){
+            event.preventDefault();
+            jogadorNome = document.getElementById('inomejogador').value;
+            document.getElementById('jogador').style.display = 'none';
+            document.getElementById('jogo').style.display = 'block';
+            proximaFase();
+        }
+
+        function proximaFase() {
+            if (faseatual > faseMax) {
+                fimTabuada();
+                return;
+            }
+
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            respCorreta = num1 * num2; // Armazenar a resposta correta
+            const operacao = `${num1} x ${num2}`;
+
+            document.getElementById('fase').innerText = faseatual;
+            document.getElementById('operacao').innerText = operacao;
+            document.getElementById('situacao').innerText = ''; // Limpar a situação antes de cada fase
+
+            faseatual++;
+        }
+
+        function enviarResposta(event) {
+            event.preventDefault();
+            const respDoJogador = parseInt(document.getElementById('resposta').value);
+
+            if (respDoJogador === respCorreta) {
+                pontuacao += 2;
+                alert('Parabéns!!! + 2 pontos.');
+            } else {
+                pontuacao -= 1;
+                alert(`Nããããooo, você errou!! A resposta certa era ${respCorreta}. -1 ponto.`);
+            }
+
+            document.getElementById('resposta').value = '';
+            proximaFase();
+        }
+
+        function fimTabuada() {
+            document.getElementById('jogo').style.display = 'none';
+            document.getElementById('fim').style.display = 'block';
+            document.getElementById('situacao').innerText = ''; 
+
+            if(faseatual == 6){
+                if (pontuacao === 10) {
+                document.getElementById('pontuacao').innerHTML = `Parabéns, ${jogadorNome}!! Você atingiu a pontuação máxima de 10 pontos!`;
+            } else {
+                document.getElementById('pontuacao').innerHTML = `${jogadorNome}, você fez ${pontuacao} pontos.`;
+            }
+            }
+
+            document.getElementById('jogarnovamente').style.display = 'block';
+            document.getElementById('jogarnovamente').onclick = () => location.reload();
+        }
+
+        document.getElementById('jogarnovamente').style.display = 'block';
+        document.getElementById('jogarnovamente').onclick = () => location.reload();
+    </script>
+</body>
+</html>

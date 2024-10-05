@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatório1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f6a257f-811f-44b3-b949-1a527d0adf01">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="LAB6_DataAdapter.jrdax"/>
+	<parameter name="ID_LOCACAO" class="java.lang.Integer"/>
+	<parameter name="ANO_VENCIMENTO" class="java.sql.Date"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+    C.NOME AS CLIENTE_NOME,
+    C.EMAIL AS CLIENTE_EMAIL,
+    A.DATA_VENCIMENTO,
+    A.VALOR_PAGO,
+    A.DATA_PAGAMENTO,
+    A.OBS,
+    (SELECT SUM(A2.VALOR_PAGO) 
+     FROM ALUGUEIS A2 
+     JOIN LOCACAO L2 ON A2.ID_LOCACAO = L2.ID
+     WHERE L2.ID = $P{ID_LOCACAO}
+       AND EXTRACT(YEAR FROM A2.DATA_VENCIMENTO) = $P{ANO_VENCIMENTO} 
+    ) AS TOTAL_PAGAMENTOS
+FROM 
+    ALUGUEIS A
+JOIN 
+    LOCACAO L ON A.ID_LOCACAO = L.ID
+JOIN 
+    CLIENTES C ON L.ID_INQUILINO = C.ID
+WHERE 
+    L.ID = $P{ID_LOCACAO}
+    AND EXTRACT(YEAR FROM A.DATA_VENCIMENTO) = $P{ANO_VENCIMENTO} 
+ORDER BY 
+    A.DATA_VENCIMENTO DESC]]>
+	</queryString>
+	<field name="CLIENTE_NOME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NOME"/>
+		<property name="com.jaspersoft.studio.field.label" value="CLIENTE_NOME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="CLIENTE_EMAIL" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="EMAIL"/>
+		<property name="com.jaspersoft.studio.field.label" value="CLIENTE_EMAIL"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="DATA_VENCIMENTO" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="DATA_VENCIMENTO"/>
+		<property name="com.jaspersoft.studio.field.label" value="DATA_VENCIMENTO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="alugueis"/>
+	</field>
+	<field name="VALOR_PAGO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="VALOR_PAGO"/>
+		<property name="com.jaspersoft.studio.field.label" value="VALOR_PAGO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="alugueis"/>
+	</field>
+	<field name="DATA_PAGAMENTO" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="DATA_PAGAMENTO"/>
+		<property name="com.jaspersoft.studio.field.label" value="DATA_PAGAMENTO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="alugueis"/>
+	</field>
+	<field name="OBS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="OBS"/>
+		<property name="com.jaspersoft.studio.field.label" value="OBS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="alugueis"/>
+	</field>
+	<field name="TOTAL_PAGAMENTOS" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TOTAL_PAGAMENTOS"/>
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_PAGAMENTOS"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="10" width="595" height="50" backcolor="#A6C3E4" uuid="9dbd7a0f-79f1-4981-a971-923b68c2ed36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pagamentos Efetuados na Locação]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="10" width="560" height="1" uuid="a6a54b32-5bb5-458d-8e9e-a39b1b6a6a6d"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-10" y="-1" width="580" height="50" uuid="6617c034-6c3f-4662-8345-cf00aad4caa9"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="77" height="30" uuid="ce2a984a-4a8f-4261-8c76-c1c9d1d170f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME DO CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="0" width="77" height="30" uuid="bd7aecf2-7386-4fad-92f5-8db8f2584db6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DE VENCIMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="0" width="77" height="30" uuid="9109f43b-c0ab-4702-82f5-dd80e7d15b5c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DO PAGAMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="5" width="53" height="30" uuid="b96a945f-f251-4470-ad26-3d877cf333d3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OBS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="0" width="100" height="40" uuid="30f31e61-c420-4e7f-b9b1-c3b39e3f02d4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL DOS PAGAMENTOS REALIZADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="77" height="30" uuid="f34c8dc4-1aad-4929-b8ca-3da4f020d93e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-MAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="0" width="77" height="30" uuid="c90cd984-fd7e-4077-b22e-9fbafd943a47"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR PAGO NA LOCAÇÃO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="64" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-10" y="0" width="580" height="40" uuid="1a3d49b7-9c7e-4240-bbbe-e182ef89d063"/>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="5" width="80" height="30" uuid="cc37391e-e3bf-44a8-81ba-090ae77019f0"/>
+				<textFieldExpression><![CDATA[$F{CLIENTE_NOME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="5" width="90" height="30" uuid="79830558-2472-4b68-9a4f-520edf80fb85"/>
+				<textFieldExpression><![CDATA[$F{CLIENTE_EMAIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="5" width="100" height="30" uuid="23313aad-8fc7-44b3-b82c-ef13885c280e"/>
+				<textFieldExpression><![CDATA[$F{DATA_VENCIMENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="5" width="100" height="30" uuid="7b5d1dae-ff6b-494e-b75a-9ea45f2a6939"/>
+				<textFieldExpression><![CDATA[$F{VALOR_PAGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="5" width="100" height="30" uuid="89034bcd-dc03-4127-8324-d20d699553d3"/>
+				<textFieldExpression><![CDATA[$F{DATA_PAGAMENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="5" width="70" height="30" uuid="eb95cc76-dbc5-442a-a0e5-2209550492ce"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_PAGAMENTOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="507" y="5" width="60" height="30" uuid="80ac886a-d9aa-4bbf-893f-c72be8ac3e00"/>
+				<textFieldExpression><![CDATA[$F{OBS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatório1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f6a257f-811f-44b3-b949-1a527d0adf01">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="LAB6_DataAdapter.jrdax"/>
+	<parameter name="ANO" class="java.sql.Date"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+    C.NOME AS NomeInquilino,
+    SUM(A.VALOR_PAGO) AS TotalPago
+FROM 
+    ALUGUEIS A
+JOIN 
+    LOCACAO L ON A.ID_LOCACAO = L.ID
+JOIN 
+    CLIENTES C ON L.ID_INQUILINO = C.ID
+WHERE 
+    YEAR(A.DATA_PAGAMENTO) = $P{ANO}
+GROUP BY 
+    C.NOME
+ORDER BY 
+    TotalPago DESC
+LIMIT 6]]>
+	</queryString>
+	<field name="NomeInquilino" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NOME"/>
+		<property name="com.jaspersoft.studio.field.label" value="NomeInquilino"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="TotalPago" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="TotalPago"/>
+		<property name="com.jaspersoft.studio.field.label" value="TotalPago"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="10" width="595" height="50" backcolor="#A6C3E4" uuid="9dbd7a0f-79f1-4981-a971-923b68c2ed36"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL DOS ALUGUEIS PAGOS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="10" width="560" height="1" uuid="a6a54b32-5bb5-458d-8e9e-a39b1b6a6a6d"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-10" y="-1" width="580" height="50" uuid="6617c034-6c3f-4662-8345-cf00aad4caa9"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="-10" y="9" width="140" height="30" uuid="ce2a984a-4a8f-4261-8c76-c1c9d1d170f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME DO INQUILINO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="9" width="97" height="30" uuid="f34c8dc4-1aad-4929-b8ca-3da4f020d93e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL PAGO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="64" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-10" y="0" width="580" height="40" uuid="1a3d49b7-9c7e-4240-bbbe-e182ef89d063"/>
+			</rectangle>
+			<textField>
+				<reportElement x="10" y="5" width="100" height="30" uuid="87a95e37-8138-4b87-93a3-b46caaf3fc9a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NomeInquilino}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="5" width="100" height="30" uuid="c6fc3c56-b3a2-4d08-ab2c-bcca6e1e0884"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TotalPago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="258">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement mode="Opaque" x="10" y="20" width="534" height="220" uuid="2fcdca40-2bc2-48a2-beb2-33e5bd4001fb"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{NomeInquilino}]]></seriesExpression>
+						<categoryExpression><![CDATA[0]]></categoryExpression>
+						<valueExpression><![CDATA[$F{TotalPago}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#B8E2F4"/>
+						<seriesColor seriesOrder="1" color="#6ABCE2"/>
+						<seriesColor seriesOrder="2" color="#46A2DA"/>
+						<seriesColor seriesOrder="3" color="#3982B8"/>
+						<seriesColor seriesOrder="4" color="#235284"/>
+						<seriesColor seriesOrder="5" color="#154869"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

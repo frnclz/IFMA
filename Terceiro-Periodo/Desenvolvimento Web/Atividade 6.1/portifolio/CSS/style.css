@@ -1,0 +1,132 @@
+@charset "UFT-8";
+
+.grid-1 { width: 8.33%; }
+.grid-2 { width: 16.66%; }
+.grid-3 { width: 25%; }
+.grid-4 { width: 33.33%; }
+.grid-5 { width: 41.66%; }
+.grid-6 { width: 50%; }
+.grid-7 { width: 58.33%; }
+.grid-8 { width: 66.66%; }
+.grid-9 { width: 75%; }
+.grid-10 { width: 83.33%; }
+.grid-11 { width: 91.66%; }
+.grid-12 { width: 100%; }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html{
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #378bf1;
+}
+header {
+    background-color: #9bc5f8;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+.logo{
+    font-size: 25px;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+.logo:hover{
+    color: rgb(60, 142, 223);
+    text-shadow: 0 0 25px rgb(60, 142, 223),
+                 0 0 50px rgb(60, 142, 223);
+    transform: scale(1.1);
+}
+.span{
+    color: rgb(21, 67, 126);
+}
+
+header .titulo h1 {
+    margin: 0;
+}
+
+header nav ul {
+    list-style-type: none;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main */
+main {
+    padding: 20px;
+    text-align: center;
+    font-size: larger;
+}
+section>img{
+    max-width: 80%;
+    float: center;
+    margin: 5px;
+    border-radius: 5px;
+}
+.portfolio-grid>:nth-child(1) > img{
+    width: 30%;
+}
+.portfolio-item>img{
+    width: 60%;
+}
+.portfolio-grid>:nth-child(3) > img{
+    width: 30%;
+}
+/* Footer */
+footer {
+    background-color: #9bc5f8;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer nav ul {
+    list-style-type: none;
+    margin: 10px 0;
+}
+
+footer nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+footer nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer nav ul li a:hover {
+    text-decoration: underline;
+}
+
+footer .social a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer .social a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1711570866 source:c:\users\franc\onedrive\documents\liguagem c\e.d\aed2\햞vores\main.c
+	<stdio.h>
+	<stdlib.h>
+	"AVLvsBIN.h"
+	<time.h>
+
+1711557526 source:c:\users\franc\onedrive\documents\liguagem c\e.d\aed2\햞vores\avlvsbin.c
+	<stdio.h>
+	<stdlib.h>
+	"AVLvsBIN.h"
+
+1711570731 c:\users\franc\onedrive\documents\liguagem c\e.d\aed2\햞vores\avlvsbin.h
+
+1711570731 source:c:\users\franc\onedrive\documents\liguagem c\e.d\aed2\햞vores\avlvsbin2.c
+	<stdio.h>
+	<stdlib.h>
+	"AVLvsBIN.h"
+

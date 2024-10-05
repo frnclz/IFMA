@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1722468223 source:g:\meu drive\documentos\documents\3ºp\aed2\grafos\grafoteste\grafoteste.c
+	<stdio.h>
+	<stdlib.h>
+	"GrafoTeste.h"
+
+1722456420 g:\meu drive\documentos\documents\3ºp\aed2\grafos\grafoteste\grafoteste.h
+
+1722462024 source:g:\meu drive\documentos\documents\3ºp\aed2\grafos\grafoteste\main.c
+	<stdio.h>
+	<stdlib.h>
+	"GrafoTeste.h"
+
+1722454851 source:g:\meu drive\documentos\documents\3ºp\aed2\grafos\grafoteste\src\data.cpp
+	"Data.h"
+
+1722454850 g:\meu drive\documentos\documents\3ºp\aed2\grafos\grafoteste\include\data.h
+

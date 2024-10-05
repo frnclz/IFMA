@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Número Mágico</title>
+    <link rel="stylesheet" href="../CSS/jogo.css">
+    <link rel="stylesheet" href="../CSS/nmrMagico.css">
+</head>
+<body>
+    <header>
+        <h1>Número Mágico</h1>
+        <a href="../HTML/index.html">Início</a>
+    </header>
+
+    <div class="game">
+        <form id="jogo" action="" onsubmit="checaNmrMagico(event)">
+            <label for="iresposta">Digite um número entre 0 e 50:</label>
+            <textarea type="text" name="resposta" id="iresposta"></textarea required>
+            <button type="submit">Verificar</button>
+        </form>
+        <div>
+            <p id="situacao"></p>
+            <p id="tentativas">Tentativas: 0</p>
+        </div>
+
+        <button id="jogarnovamente" style="display:none;" onclick="reiniciaJogo()">Jogar Novamente</button>
+    </div>
+
+    <script>
+        let nmrMagico = Math.floor(Math.random() * 50) + 1;
+        let tentativas = 0;
+
+        function checaNmrMagico(event) {
+            event.preventDefault();
+            const adivinhe = parseInt(document.getElementById('iresposta').value);
+            tentativas++;
+            document.getElementById('tentativas').innerText = `Tentativas: ${tentativas}`;
+
+            if (isNaN(adivinhe)) {
+                alert('Por favor, insira um número válido.');
+            } else if (adivinhe < nmrMagico) {
+                alert('O número mágico é maior!');
+            } else if (adivinhe > nmrMagico) {
+                alert('O número mágico é menor!');
+            } else {
+                alert(`Parabéns, você acertou em ${tentativas} tentativas!`);
+                document.getElementById('jogo').style.display = 'none';
+                document.getElementById('jogarnovamente').style.display = 'block';
+            }
+
+            document.getElementById('iresposta').value = '';
+            document.getElementById('iresposta').focus();
+        }
+
+        function reiniciaJogo() {
+            nmrMagico = Math.floor(Math.random() * 50) + 1;
+            tentativas = 0;
+            document.getElementById('tentativas').innerText = 'Tentativas: 0';
+            document.getElementById('jogo').style.display = 'block';
+            document.getElementById('jogarnovamente').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

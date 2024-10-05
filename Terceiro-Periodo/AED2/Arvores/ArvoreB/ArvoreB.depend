@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1721350168 source:g:\meu drive\documentos\documents\3ºp\aed2\Árvores\arvoreb\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<locale.h>
+	"ArvB.h"
+
+1721349731 source:g:\meu drive\documentos\documents\3ºp\aed2\Árvores\arvoreb\arvb.c
+	<stdio.h>
+	<stdlib.h>
+	"ArvB.h"
+
+1721350156 g:\meu drive\documentos\documents\3ºp\aed2\Árvores\arvoreb\arvb.h
+	<stdbool.h>
+
+1721349922 source:g:\meu drive\documentos\documents\3ºp\aed2\Árvores\arvoreb\teste.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	"ArvB.h"
+
