@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+
+    <style>
+        *{
+            background-color: #fff7f7;
+            color: #363636;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 1rem;
+        }
+        .box {
+            max-width: 400px;
+            padding: 2rem;
+            width: 100%;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            color: #363636;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .input{
+            background-color: white;
+            color: #363636;
+        }
+        .input::placeholder {
+            color: #cac7c7;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1 class="title has-text-centered">Calcular IMC</h1>
+            <div class="field">
+                <label for="peso" class="label has-text-weight-bold has-text-black">Peso (kg):</label>
+                <div class="control">
+                    <input type="number" id="peso" class="input" placeholder="Ex.: 70" required>
+                </div>
+            </div>
+            <div class="field">
+                <label for="altura" class="label has-text-weight-bold has-text-black">Altura (m):</label>
+                <div class="control">
+                    <input type="number" id="altura" class="input" placeholder="Ex.: 1.73" step="0.01" required>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button is-primary is-fullwidth has-text-white" onclick="calcularIMC()">Calcular IMC</button>
+                </div>
+            </div>
+            <p id="resultado" class="has-text-centered has-text-wight-bold is-size-5"></p>
+        </div>
+    </div>
+
+    <script>
+        function calcularIMC(){
+            const peso = parseFloat(document.getElementById('peso').value)
+            const altura = parseFloat(document.getElementById('altura').value)
+            const resultado = document.getElementById('resultado')
+
+            const imc = peso / (altura * altura)
+            resultado.textContent = `Seu IMC: ${imc.toFixed(2)}`
+            resultado.classList.add('has-text-primary')
+        }
+        
+    </script>
+</body>
+</html>
