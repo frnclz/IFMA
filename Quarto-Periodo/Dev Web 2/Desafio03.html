@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <title>Botão Pisca-Pisca</title>
+    <style>
+        #pisca {
+            width: 150px;
+            height: 90px;
+            font-size: 18px;
+            color: white;
+        }
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <section class="section has-text-centered">
+        <div class="box" style="max-width: 400px; margin: 0 auto;">
+            <h1 class="title">Botão Pisca-Pisca</h1>
+            <button id="pisca" class="red button is-large">Pisca-Pisca</button>
+            <button id="toggle" class="button is-black is-rounded">Play</button>
+        </div>
+    </section>
+
+    <script>
+        let intervalo = null;
+
+        document.getElementById("toggle").addEventListener("click", function () {
+            const botao = this;
+            const pisca = document.getElementById("pisca");
+
+            if (botao.textContent === "Play") {
+                intervalo = setInterval(() => {
+                    pisca.classList.toggle("red");
+                    pisca.classList.toggle("blue");
+                }, 500);
+                botao.textContent = "Pause";
+            } else {
+                clearInterval(intervalo);
+                intervalo = null;
+                botao.textContent = "Play";
+            }
+        });
+    </script>
+</body>
+</html>

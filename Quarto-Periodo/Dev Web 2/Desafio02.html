@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let intervalo = setInterval(() => {
+            document.write('<br>Executando a cada 2 segundos');
+        }, 2000);
+
+         setTimeout (() => {
+            clearInterval(intervalo);
+            document.write('<p>(Pausa)</p>');
+         }, 10000);
+
+         setTimeout(() => {
+            intervalo = setInterval(() => {
+            document.write('<br>Executando a cada 2 segundos');
+        }, 2000);
+         }, 15000);
+    </script>
+</body>
+</html>
