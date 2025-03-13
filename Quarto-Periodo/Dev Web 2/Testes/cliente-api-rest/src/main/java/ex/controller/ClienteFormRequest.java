@@ -95,7 +95,13 @@ public class ClienteFormRequest {
     }
 
     public Cliente toModel() {
-        return new Cliente(id, nascimento, cpf, nome, endereco, telefone, email, datacadastro);
+        if (this.id == null) {
+            // Se o ID for null, cria um novo Cliente sem ID (o banco de dados gerará o ID automaticamente)
+            return new Cliente(nascimento, cpf, nome, endereco, telefone, email);
+        } else {
+            // Se o ID não for null, cria um Cliente com o ID especificado
+            return new Cliente(id, nascimento, cpf, nome, endereco, telefone, email, datacadastro);
+        }
     }
 
     public static ClienteFormRequest fromModel(Cliente cliente) {
